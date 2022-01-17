@@ -8,7 +8,7 @@ const AddPage = () => {
   return (
     <>
       <Head>
-        <title>Add a meme | memepi.cc</title>
+        <title>Add a meme | memes.pm</title>
       </Head>
       <ContributeForm />;
     </>

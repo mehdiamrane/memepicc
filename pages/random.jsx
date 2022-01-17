@@ -6,7 +6,7 @@ const RandomPage = () => {
   return (
     <>
       <Head>
-        <title>Random | memepi.cc</title>
+        <title>Random | memes.pm</title>
       </Head>
       <AspectRatio width="full" ratio={16 / 9}>
         <iframe

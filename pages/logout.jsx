@@ -40,7 +40,7 @@ const LogoutPage = () => {
   return (
     <>
       <Head>
-        <title>Logging out | memepi.cc</title>
+        <title>Logging out | memes.pm</title>
       </Head>
       <LoadingBlock />;
     </>

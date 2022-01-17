@@ -7,7 +7,7 @@ const Page404 = () => {
   return (
     <>
       <Head>
-        <title>Server Error | memepi.cc</title>
+        <title>Server Error | memes.pm</title>
       </Head>
       <Heading>500 - Server-side error occurred</Heading>
     </>

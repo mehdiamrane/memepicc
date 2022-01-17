@@ -13,7 +13,7 @@ const Logo = () => {
         _hover={{ color: "white" }}
         transition="color 150ms ease"
       >
-        memepi.cc
+        memes.pm
       </Text>
     </NextLink>
   );

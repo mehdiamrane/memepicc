@@ -7,7 +7,7 @@ const Page404 = () => {
   return (
     <>
       <Head>
-        <title>Page not found | memepi.cc</title>
+        <title>Page not found | memes.pm</title>
       </Head>
       <Heading>404 - Page Not Found</Heading>
     </>

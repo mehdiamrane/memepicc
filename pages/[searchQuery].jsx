@@ -9,7 +9,7 @@ const SearchPage = ({ meme }) => {
   return (
     <>
       <Head>
-        <title>{meme.name} | memepi.cc</title>
+        <title>{meme.name} | memes.pm</title>
         <meta property="og:title" content={meme.name} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={meme.url} />

@@ -7,11 +7,11 @@ const HomePage = () => {
   return (
     <>
       <Head>
-        <title>Home | memepi.cc</title>
+        <title>Home | memes.pm</title>
       </Head>
       <Box p={8} w="full" rounded="lg" bg="gray.800">
         <Stack spacing={4} align="center">
-          <Heading textAlign="center">Welcome to memepi.cc</Heading>
+          <Heading textAlign="center">Welcome to memes.pm</Heading>
           <Stack spacing={1} align="center">
             <Text>Kinda empty, eh?</Text>
             <Text>Here, get a free meme</Text>

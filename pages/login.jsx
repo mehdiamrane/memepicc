@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <>
       <Head>
-        <title>Log in | memepi.cc</title>
+        <title>Log in | memes.pm</title>
       </Head>
       <LoginForm />;
     </>

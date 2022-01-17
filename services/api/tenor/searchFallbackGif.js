@@ -15,7 +15,7 @@ export const searchFallbackGif = ({ query }) => {
 
         const name = result.content_description;
         const filename = formatFileName({ name, extension: "gif" });
-        const { url } = result.media[0].gif;
+        const { url } = result.media[0].tinygif;
         const queryWithName = `${query}-${name
           .toLowerCase()
           .split(" ")

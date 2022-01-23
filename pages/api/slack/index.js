@@ -22,7 +22,7 @@ const slackHandler = async (req, res) => {
           text: meme.name,
         },
         image_url: meme.url,
-        alt_text: meme.filename,
+        alt_text: meme.name,
       },
     ],
   };

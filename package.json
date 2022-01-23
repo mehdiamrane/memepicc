@@ -7,10 +7,15 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "npm": ">=6.0.0",
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@chakra-ui/react": "^1.7.4",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@slack/bolt": "^3.8.1",
     "firebase": "^9.6.2",
     "firebase-admin": "^10.0.1",
     "framer-motion": "^5.5.6",
@@ -19,7 +24,8 @@
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "zipson": "^0.2.12"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",

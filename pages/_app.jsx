@@ -19,9 +19,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
-// TODO: Make better logic when adding and fetching memes
-// Add sec rules so that only me can add to firebase
-// Make a sligthly better design for search page.
-// Make sure every page has title data and shit + favicon
-// Push and we're good.

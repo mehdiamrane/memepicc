@@ -7,9 +7,9 @@ import {
 import { mapUserData } from "utils/mapUserData";
 import { onIdTokenChanged } from "firebase/auth";
 import { auth } from "services/web/initFirebase";
-import { getClaims } from "services/web/auth";
+// import { getClaims } from "services/web/auth";
 
-// USE USEAUTH HOOK INSTEAD OF THIS ONE.
+// NOTE: DON'T USE THIS HOOK, USE USEAUTH HOOK INSTEAD OF THIS ONE.
 const useUserState = () => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -23,14 +23,14 @@ const useUserState = () => {
         const mappedUserData = mapUserData(userData);
         setUserCookie(mappedUserData);
         setUser(mappedUserData);
-        console.log(
-          `Logged in with email: ${mappedUserData.email} and uid: ${mappedUserData.id}`,
-        );
-        getClaims()
-          .then((claims) =>
-            console.log(`You're ${!claims.admin ? "NOT " : ""}an admin`),
-          )
-          .catch((error) => console.log("Error getting claims", error));
+        // console.log(
+        //   `Logged in with email: ${mappedUserData.email} and uid: ${mappedUserData.id}`,
+        // );
+        // getClaims()
+        //   .then((claims) =>
+        //     console.log(`You're ${!claims.admin ? "NOT " : ""}an admin`),
+        //   )
+        //   .catch((error) => console.error("Error getting claims", error));
         setLoading(false);
       } else {
         removeUserCookie();

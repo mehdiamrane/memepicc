@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
 const { getAuth } = require("firebase-admin/auth");
@@ -16,5 +17,14 @@ if (admin.apps.length === 0) {
   });
 }
 
-export const db = getFirestore(app);
+const db = getFirestore(app);
+
+if (!db._settings.ignoreUndefinedProperties) {
+  db.settings({
+    ignoreUndefinedProperties: true,
+  });
+}
+
+export { db };
+
 export const auth = getAuth(app);

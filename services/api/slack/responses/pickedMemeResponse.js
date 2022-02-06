@@ -1,9 +1,9 @@
 export const pickedMemeResponse = ({
   meme,
-  userId,
   channelId,
   threadTs,
   postedWith,
+  token,
 }) => {
   const postedWithText =
     postedWith === "shortcut"
@@ -14,7 +14,7 @@ export const pickedMemeResponse = ({
     response_type: "in_channel",
     replace_original: true,
     as_user: true,
-    username: userId,
+    token,
     channel: channelId,
     text: meme.name,
     ...(threadTs && { thread_ts: threadTs }),

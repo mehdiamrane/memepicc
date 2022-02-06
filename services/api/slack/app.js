@@ -25,18 +25,17 @@ const receiver = new HTTPReceiver({
   clientId: process.env.SLACK_APP_CLIENT_ID,
   clientSecret: process.env.SLACK_APP_CLIENT_SECRET,
   stateSecret: process.env.SLACK_STATE_SECRET,
+  // The `processBeforeResponse` option is required for all FaaS environments.
+  // It allows Bolt methods (e.g. `app.message`) to handle a Slack request
+  // before the Bolt framework responds to the request (e.g. `ack()`). This is
+  // important because FaaS immediately terminate handlers after the response.
+  processBeforeResponse: true,
   scopes: ["chat:write", "commands"],
   redirectUri: `https://${process.env.BASE_DOMAIN}/api/slack/oauth_redirect`,
   installationStore: {
-    storeInstallation: async (installation) => {
-      await storeInstallation(installation);
-    },
-    fetchInstallation: async (installation) => {
-      await fetchInstallation(installation);
-    },
-    deleteInstallation: async (installation) => {
-      await deleteInstallation(installation);
-    },
+    storeInstallation,
+    fetchInstallation,
+    deleteInstallation,
   },
   installerOptions: {
     userScopes: ["chat:write"],

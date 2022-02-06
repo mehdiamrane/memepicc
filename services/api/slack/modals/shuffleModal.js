@@ -66,7 +66,6 @@ export const shuffleModal = ({
       ? textBlock
       : conversationsBlock;
 
-  // console.log("triggerId", triggerId);
   return {
     ...(viewId && { view_id: viewId }),
     ...(viewHash && { hash: viewHash }),

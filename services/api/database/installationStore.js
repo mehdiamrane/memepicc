@@ -69,8 +69,6 @@ export const storeInstallation = async (installation) => {
 
 // When slack app is making a request
 export const fetchInstallation = async (installQuery) => {
-  console.log("fetchInstallation");
-
   if (
     installQuery.isEnterpriseInstall &&
     installQuery.enterpriseId !== undefined
@@ -94,11 +92,7 @@ export const fetchInstallation = async (installQuery) => {
       userId: installQuery.userId,
     });
 
-    console.log("getting slackInstallations");
-
     const res = await db.collection("slackInstallations").doc(docId).get();
-
-    console.log("retuns slackInstallations");
 
     return nullToUndefined(res.data());
   }

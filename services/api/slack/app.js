@@ -212,9 +212,8 @@ app.command(
   "/meme",
   async ({ command, ack, respond, client, logger, context }) => {
     try {
-      console.log("ack");
       await ack();
-      console.log("checkUserToken");
+
       checkUserToken({ context });
 
       if (command.text.length === 0) {
@@ -227,11 +226,9 @@ app.command(
       const memes = await searchMemes({ query: command.text });
 
       const response = shuffleMemeResponse({ memes, currentIndex: 0 });
-      console.log("sending response");
 
       await respond(response);
     } catch (error) {
-      console.log("error", error);
       await respond(errorResponse(error));
       logger.error(error);
     }

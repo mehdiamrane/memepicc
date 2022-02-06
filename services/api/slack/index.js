@@ -3,7 +3,6 @@ import { search } from "services/api/database";
 import { searchFallbackGif } from "services/api/tenor/searchFallbackGif";
 
 export const searchMemes = async ({ query }) => {
-  console.log("start search meme");
   const searchQuery = formatSlackQuery(query);
 
   const foundMemes = await search({
@@ -40,6 +39,6 @@ export const searchMemes = async ({ query }) => {
       });
     });
   }
-  console.log("returns memes");
+
   return memes;
 };

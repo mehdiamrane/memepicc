@@ -66,10 +66,11 @@ export const shuffleModal = ({
       ? textBlock
       : conversationsBlock;
 
+  // console.log("triggerId", triggerId);
   return {
-    view_id: viewId,
+    ...(viewId && { view_id: viewId }),
     ...(viewHash && { hash: viewHash }),
-    // response_action: "update",
+    ...(!viewId && !viewHash && { response_action: "update" }),
     view: {
       type: "modal",
       callback_id: "shuffle_view",

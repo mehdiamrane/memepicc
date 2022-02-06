@@ -8,7 +8,7 @@ import {
 import {
   searchModal,
   shuffleModal,
-  // loadingModal,
+  loadingModal,
 } from "services/api/slack/modals";
 import { searchMemes } from "services/api/slack";
 import {
@@ -120,10 +120,6 @@ app.shortcut(
 // After submitting the search input inside the modal.
 app.view("modal_search", async ({ ack, body, logger, context, client }) => {
   try {
-    await ack({
-      response_action: "update",
-    });
-
     checkUserToken({ context });
 
     const query = body.view.state.values.search_block.search_input.value;
@@ -131,15 +127,21 @@ app.view("modal_search", async ({ ack, body, logger, context, client }) => {
 
     const memes = await searchMemes({ query });
 
-    const response = shuffleModal({
+    const loadingResponse = loadingModal({
       viewId: body.view.id,
+      viewHash: body.view.hash,
+    });
+
+    await client.views.update(loadingResponse);
+
+    const response = shuffleModal({
       memes,
       currentIndex: 0,
       conversation,
       postedWith,
     });
 
-    await client.views.update(response);
+    await ack(response);
   } catch (error) {
     // await respond(errorResponse(error));
     logger.error(error);
@@ -149,9 +151,10 @@ app.view("modal_search", async ({ ack, body, logger, context, client }) => {
 // When shuffling through memes inside modal.
 app.action("modal_shuffle", async ({ ack, body, client, context, logger }) => {
   try {
-    ack({
+    await ack({
       response_action: "update",
     });
+
     checkUserToken({ context });
 
     const [payload] = body.actions.filter(

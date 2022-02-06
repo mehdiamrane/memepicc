@@ -1,6 +1,7 @@
-export const loadingModal = () => {
+export const loadingModal = ({ viewHash, viewId }) => {
   return {
-    response_action: "update",
+    view_id: viewId,
+    hash: viewHash,
     view: {
       type: "modal",
       title: {

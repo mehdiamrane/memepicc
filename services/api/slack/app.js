@@ -28,9 +28,15 @@ const receiver = new HTTPReceiver({
   scopes: ["chat:write", "commands"],
   redirectUri: `https://${process.env.BASE_DOMAIN}/api/slack/oauth_redirect`,
   installationStore: {
-    storeInstallation,
-    fetchInstallation,
-    deleteInstallation,
+    storeInstallation: async (installation) => {
+      await storeInstallation(installation);
+    },
+    fetchInstallation: async (installation) => {
+      await fetchInstallation(installation);
+    },
+    deleteInstallation: async (installation) => {
+      await deleteInstallation(installation);
+    },
   },
   installerOptions: {
     userScopes: ["chat:write"],

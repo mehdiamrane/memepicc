@@ -118,11 +118,9 @@ app.shortcut(
 );
 
 // After submitting the search input inside the modal.
-app.view(
-  "modal_search",
-  async ({ body, ack, logger, context, respond, client }) => {
-    try {
-      await ack(loadingModal());
+app.view("modal_search", async ({ ack, body, logger, context, client }) => {
+  try {
+    ack(loadingModal()).then(async () => {
       checkUserToken({ context });
 
       const query = body.view.state.values.search_block.search_input.value;
@@ -139,22 +137,19 @@ app.view(
       });
 
       await client.views.update(response);
-    } catch (error) {
-      await respond(errorResponse(error));
-      logger.error(error);
-    }
-  },
-);
+    });
+  } catch (error) {
+    // await respond(errorResponse(error));
+    logger.error(error);
+  }
+});
 
 // When shuffling through memes inside modal.
-app.action(
-  "modal_shuffle",
-  async ({ ack, body, client, context, respond, logger }) => {
-    try {
-      // Acknowledge shortcut request
-      await ack({
-        response_action: "update",
-      });
+app.action("modal_shuffle", async ({ ack, body, client, context, logger }) => {
+  try {
+    ack({
+      response_action: "update",
+    }).then(async () => {
       checkUserToken({ context });
 
       const [payload] = body.actions.filter(
@@ -177,40 +172,37 @@ app.action(
       });
 
       await client.views.update(response);
-    } catch (error) {
-      await respond(errorResponse(error));
-      logger.error(error);
-    }
-  },
-);
+    });
+  } catch (error) {
+    // await respond(errorResponse(error));
+    logger.error(error);
+  }
+});
 
 // When submitting the picked meme in shuffle view modal.
-app.view(
-  "shuffle_view",
-  async ({ body, ack, client, logger, context, respond }) => {
-    try {
-      await ack();
-      checkUserToken({ context });
+app.view("shuffle_view", async ({ body, ack, client, logger, context }) => {
+  try {
+    await ack();
+    checkUserToken({ context });
 
-      const { meme, conversation, postedWith } = parse(
-        body.view.private_metadata,
-      );
-      const response = pickedMemeResponse({
-        meme,
-        userId: body.user.id,
-        channelId: conversation?.channelId || body.response_urls[0].channel_id,
-        ...(conversation?.threadTs && { threadTs: conversation.threadTs }),
-        token: context.userToken,
-        postedWith,
-      });
+    const { meme, conversation, postedWith } = parse(
+      body.view.private_metadata,
+    );
+    const response = pickedMemeResponse({
+      meme,
+      userId: body.user.id,
+      channelId: conversation?.channelId || body.response_urls[0].channel_id,
+      ...(conversation?.threadTs && { threadTs: conversation.threadTs }),
+      token: context.userToken,
+      postedWith,
+    });
 
-      await client.chat.postMessage(response);
-    } catch (error) {
-      await respond(errorResponse(error));
-      logger.error(error);
-    }
-  },
-);
+    await client.chat.postMessage(response);
+  } catch (error) {
+    // await respond(errorResponse(error));
+    logger.error(error);
+  }
+});
 
 // When user types /meme [keywords] in slack
 app.command(
